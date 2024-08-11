@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans",});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt">
-      <body className={cn("min-h-screen bg-slate-50 antialiased", inter.className)}>{children}</body>
+      <body className={cn("min-h-screen bg-slate-50 antialiased", inter.variable)}>{children}</body>
     </html>
   );
 }

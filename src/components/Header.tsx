@@ -1,13 +1,22 @@
-import { Menu } from "lucide-react";
+import { Bell, Menu } from "lucide-react";
 import { Button } from "./ui/button";
-
-export default function Header() {
+import SheetMobile from "./SheetMobile";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+interface ISideBar{
+  toogleSideBar: () => void,
+}
+export default function Header({toogleSideBar} : ISideBar) {
     return (
-    <header className="bg-white w-full p-1 flex justify-between pr-4">
-          <Button className="p-2" variant={"ghost"}><Menu/></Button>
+    <header className="sticky top-0 left-0 bg-white w-full p-1 flex justify-between pr-4 h-20 items-center">
+          <Button onClick={toogleSideBar} className="p-2 max-md:hidden" variant={"ghost"}><Menu className="w-8 h-8"/></Button>
+          <SheetMobile/>
           <div className="flex items-center gap-1">
-            <small>Fernando</small>
-            <img className="rounded-full w-6 h-6" src="https://avatars.githubusercontent.com/u/122708313?s=400&u=43bb79fc06f46ae8dd61b32128e5582a5c0c1473&v=4" alt="" />
+            <Button variant={"ghost"}><Bell className="w-5 h-5"/></Button>
+              <small>Fernando</small>
+              <Avatar>
+                <AvatarImage src="https://github.com/wonderfernando.png" alt="@shadcn" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar> 
           </div>
     </header>)
 }
