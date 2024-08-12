@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Sidebar({isSideBarOpen} : {isSideBarOpen:boolean}) {
     return (
-        <div className={`flex flex-col w-96 bg-white min-h-screen transition-all max-md:hidden text-lg overflow-hidden ${!isSideBarOpen && "opacity-0 w-0"}`}>
+        <div className={`flex flex-col bg-white min-h-screen transition-all max-md:hidden text-lg overflow-hidden ${!isSideBarOpen ? "w-0 opacity-0" : "w-96 opacity-1"}`}>
             <div className="flex flex-col">
                 <div className="border-b flex gap-1 font-extrabold border-zinc-400/20 h-20 items-center pl-2">
                     <Car className="font-extrabold"/>
