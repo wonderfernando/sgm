@@ -1,44 +1,55 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { PlusCircle, Search, Table } from "lucide-react";
-const invoices = [
+import { TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Table } from "@/components/ui/table";
+import { Eye, PlusCircle, Search } from "lucide-react";
+const auto = [
     {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      paymentMethod: "Bank Transfer",
-    },
+      name: "Gustavo Junior",
+      email: "gustavo@gmail.com",
+      phone: "921312313",
+      bi: "007021321LA23",
+    }, {
+        name: "Gustavo Junior",
+        email: "gustavo@gmail.com",
+        phone: "921312313",
+        bi: "007021321LA23",
+      }, {
+        name: "Gustavo Junior",
+        email: "gustavo@gmail.com",
+        phone: "921312313",
+        bi: "007021321LA23",
+      }, {
+        name: "Gustavo Junior",
+        email: "gustavo@gmail.com",
+        phone: "921312313",
+        bi: "007021321LA23",
+      }, {
+        name: "Gustavo Junior",
+        email: "gustavo@gmail.com",
+        phone: "921312313",
+        bi: "007021321LA23",
+      }, {
+        name: "Gustavo Junior",
+        email: "gustavo@gmail.com",
+        phone: "921312313",
+        bi: "007021321LA23",
+      }, {
+        name: "Gustavo Junior",
+        email: "gustavo@gmail.com",
+        phone: "921312313",
+        bi: "007021321LA23",
+      }, {
+        name: "Gustavo Junior",
+        email: "gustavo@gmail.com",
+        phone: "921312313",
+        bi: "007021321LA23",
+      }, {
+        name: "Gustavo Junior",
+        email: "gustavo@gmail.com",
+        phone: "921312313",
+        bi: "007021321LA23",
+      },
 ]
 export default function Automobilista() {
     return(
@@ -52,11 +63,37 @@ export default function Automobilista() {
                 </div>
                 <Button className="flex gap-1 bg-foreground"><PlusCircle className="w-5 h-5"/>Cadastrar</Button>
             </div>
-            <div>
-                <Table>
-                    
+            <div className="w-full shadow-sm rounded-md">
+     
+                <Table className="bg-white mt-8  rounded-md">
+                <TableHeader>
+                    <TableRow>
+                    <TableHead className="w-[200px]">Nome</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Telefone</TableHead>
+                    <TableHead>BI</TableHead>
+                    <TableHead className="text-right"></TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {auto.map((automobilista) => (
+                    <TableRow key={automobilista.name}>
+                        <TableCell className="font-medium">{automobilista.name}</TableCell>
+                        <TableCell>{automobilista.email}</TableCell>
+                        <TableCell>{automobilista.phone}</TableCell>
+                        <TableCell >{automobilista.bi}</TableCell>
+                        <TableCell><Button variant={"outline"} className=" hover:bg-muted"><Eye className="w-5 h-5 "/></Button></TableCell>
+                    </TableRow>
+                    ))}
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                    <TableCell colSpan={3}><Button>Anterior</Button></TableCell>
+                    <TableCell className="text-right"><Button>Proximo</Button></TableCell>
+                    </TableRow>
+                </TableFooter>
                 </Table>
-            </div>
+         </div>
         </div>
     )
 }
