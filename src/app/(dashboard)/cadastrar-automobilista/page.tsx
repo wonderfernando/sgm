@@ -1,4 +1,7 @@
+
+import AutomobilistaForm from "@/components/automobilstas/AutomobilistaForm";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogHeader, DialogTrigger, DialogContent, DialogDescription, DialogTitle} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Table } from "@/components/ui/table";
@@ -61,11 +64,29 @@ export default function Automobilista() {
                     <Input placeholder="Email do automobilistas"/>
                     <Button variant={"ghost"} className="text-muted-foreground flex gap-1"><Search className="w-4 h-4"/> Filtrar resultados</Button>
                 </div>
-                <Button className="flex gap-1 bg-foreground"><PlusCircle className="w-5 h-5"/>Cadastrar</Button>
+
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button className="flex gap-1 bg-foreground"><PlusCircle className="w-5 h-5"/>Cadastrar</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                          <DialogHeader>
+                            <DialogTitle><span className="text-slate-700">Cadastrar novo automobilista</span></DialogTitle>
+                          </DialogHeader>
+                          <AutomobilistaForm />
+                    </DialogContent>
+                </Dialog>
             </div>
+
+
+
+
+
+
+
             <div className="w-full shadow-sm rounded-md">
      
-                <Table className="bg-white mt-8  rounded-md">
+              <Table className="bg-white mt-8  rounded-md">
                 <TableHeader>
                     <TableRow>
                     <TableHead className="w-[200px]">Nome</TableHead>
