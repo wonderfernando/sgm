@@ -69,8 +69,8 @@ export default function Automobilista() {
                     <DialogTrigger asChild>
                         <Button className="flex gap-1 bg-foreground"><PlusCircle className="w-5 h-5"/>Cadastrar</Button>
                     </DialogTrigger>
-                    <DialogContent>
-                          <DialogHeader>
+                    <DialogContent className="">
+                          <DialogHeader className="relative">
                             <DialogTitle><span className="text-slate-700">Cadastrar novo automobilista</span></DialogTitle>
                           </DialogHeader>
                           <AutomobilistaForm />
@@ -114,7 +114,7 @@ export default function Automobilista() {
                     </TableRow>
                 </TableFooter>
                 </Table>
-         </div>
+            </div>
         </div>
     )
 }
