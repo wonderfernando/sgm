@@ -152,7 +152,7 @@ export default function FirstForm({setNextStep, setPreviusStep}: IStep) {
                         control={form.control}
                         name="data_nascimento"
                         render={({field}) => (
-                            <FormItem>
+                            <FormItem className="flex flex-col">
                                 <Label className="text-slate-700">Informe a data de nascimemto do automoblista</Label>
                                 <FormControl>
                                     <Popover>
@@ -189,7 +189,7 @@ export default function FirstForm({setNextStep, setPreviusStep}: IStep) {
                         <div className="grid grid-cols-2 w-full gap-2 max-sm:grid-cols-1">
                         <FormField
                         control={form.control}
-                        name="data_nascimento"
+                        name="data_emissao_bi"
                         render={({field}) => (
                             <FormItem className="flex flex-col">
                                 <Label className="text-slate-700">Informe a data de emissão</Label>
@@ -211,7 +211,7 @@ export default function FirstForm({setNextStep, setPreviusStep}: IStep) {
                     />
                   <FormField
                         control={form.control}
-                        name="data_nascimento"
+                        name="data_validade_bi"
                         render={({field}) => (
                             <FormItem className="flex flex-col">
                                 <Label className="text-slate-700">Informe a data de validade</Label>

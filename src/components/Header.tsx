@@ -7,7 +7,7 @@ interface ISideBar{
 }
 export default function Header({toogleSideBar} : ISideBar) {
     return (
-    <header className="sticky top-0 left-0 bg-white w-full p-1 flex justify-between pr-4 h-20 items-center">
+    <header className="sticky z-50 shadow-sm top-0 left-0 bg-white w-full p-1 flex justify-between pr-4 h-20 items-center">
           <Button onClick={toogleSideBar} className="p-2 max-md:hidden" variant={"ghost"}><Menu className="w-8 h-8"/></Button>
           <SheetMobile/>
           <div className="flex items-center gap-1">

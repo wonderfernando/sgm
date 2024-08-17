@@ -14,7 +14,7 @@ import { ICountry, IStep } from "./FirstForm"
 import { ptBR } from "date-fns/locale/pt-BR"
 import { useEffect, useState } from "react"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
-import { cn } from "@/lib/utils"
+import { CATE, cn } from "@/lib/utils"
 import { Button } from "../ui/button"
 
 export default function ThreeForm({setNextStep,setPreviusStep}: IStep) {
@@ -33,13 +33,13 @@ export default function ThreeForm({setNextStep,setPreviusStep}: IStep) {
     <div className="flex flex-col gap-3">
             <h1>Passo 3</h1>
             <div className="gap-4 flex flex-col">
-                <div className="flex flex-col gap-1">
+                <div className="">
                     <FormField
                     control={form.control}
-                        name="name"
+                        name="numero_carta"
                         render={({fieldState,field}) => (
-                            <FormItem>
-                                <Label className="text-slate-700">Informe o numero da carta de conducao</Label>
+                            <FormItem className="flex flex-col gap-1">
+                                <Label>Informe o numero da carta de conducao</Label>
                                 <FormControl>
                                     <Input {...field} placeholder="Numero da carta de condução"/>
                                 </FormControl>
@@ -81,14 +81,14 @@ export default function ThreeForm({setNextStep,setPreviusStep}: IStep) {
                 
             
 
-            <div className="flex flex-col">
-                   <div className="grid grid-cols-2 w-full gap-2 max-sm:grid-cols-1">
+            <div className="flex flex-col gap-3">
+                   <div className="grid grid-cols-2 w-full  max-sm:grid-cols-1">
                             <FormField
                                 control={form.control}
                                 name="data_emissao_carta_conducao"
                                 render={({field}) => (
-                                <FormItem>
-                                    <Label className="text-slate-700">Informe a data de emissão da carta de condução</Label>
+                                <FormItem className="flex flex-col">
+                                    <Label className="">Informe a data de emissão da carta de condução</Label>
                                     <FormControl>
                                         <Popover>
                                             <PopoverTrigger asChild>
@@ -109,8 +109,8 @@ export default function ThreeForm({setNextStep,setPreviusStep}: IStep) {
                                 control={form.control}
                                 name="data_validade_carta"
                                 render={({field}) => (
-                                <FormItem>
-                                    <Label className="text-slate-700">Informe a data de validade da carta de condução</Label>
+                                <FormItem className="flex flex-col">
+                                    <Label>Informe a data de validade da carta de condução</Label>
                                     <FormControl>
                                         <Popover>
                                             <PopoverTrigger asChild>
@@ -129,12 +129,12 @@ export default function ThreeForm({setNextStep,setPreviusStep}: IStep) {
                             />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-2 max-sm:grid-cols-1">
+                    <div className="grid grid-cols-2 gap-1 max-sm:grid-cols-1">
                             <FormField
                                 control={form.control}
                                 name="data_primeira_emissao_carta"
                                 render={({field}) => (
-                                    <FormItem>
+                                    <FormItem className="flex flex-col ">
                                         <Label className="text-slate-700">Informe a primeira data de emissao</Label>
                                         <FormControl>
                                             <Popover>
@@ -157,7 +157,7 @@ export default function ThreeForm({setNextStep,setPreviusStep}: IStep) {
                                 control={form.control}
                                 name="categoria"
                                 render={({field}) => (
-                                    <FormItem className="flex flex-col">
+                                    <FormItem className="flex flex-col gap-1">
                                         <Label>Informe a catergoria da carta</Label>
                                         <Popover open={openCartaCategoria} onOpenChange={setCartaCategoria}>
                                             <FormControl>  
@@ -178,10 +178,10 @@ export default function ThreeForm({setNextStep,setPreviusStep}: IStep) {
                                                 <CommandList>
                                                     <CommandEmpty>categoria nao encontrada</CommandEmpty>
                                                     <CommandGroup>
-                                                    {countrys && countrys.map((country) => (
+                                                    {CATE && CATE.map((categoria) => (
                                                         <CommandItem
-                                                        key={country.name.common}
-                                                        value={country.name.common}
+                                                        key={categoria.name}
+                                                        value={categoria.name}
                                                         onSelect={(currentValue) => {
                                                             form.setValue("categoria",currentValue)
                                                             setCartaCategoria(false)
@@ -190,10 +190,10 @@ export default function ThreeForm({setNextStep,setPreviusStep}: IStep) {
                                                         <Check
                                                             className={cn(
                                                             "mr-2 h-4 w-4",
-                                                            field.value === country.name.common ? "opacity-100" : "opacity-0"
+                                                            field.value === categoria.name ? "opacity-100" : "opacity-0"
                                                             )}
                                                         />
-                                                        {country.name.common}
+                                                        {categoria.name}
                                                         </CommandItem>
                                                     ))}
                                                     </CommandGroup>

@@ -29,6 +29,10 @@ const scheemaAutomobilista = z.object({
     data_validade_carta: z.string(),
     local_emissao: z.string(),
     numero_via: z.string(),
+    data_emissao_bi: z.date(),
+    data_validade_bi: z.date(),
+    municipio: z.string(),
+    provincia: z.string()
 })
 export type AutomobilistaType = z.infer<typeof scheemaAutomobilista>
 
@@ -58,7 +62,9 @@ export default function AutomobilistaForm() {
             return 0
         })
     }
- 
+    function handleSaveAutomobilista() {
+        
+    }
     return (
         <FormProvider {...form}>
  

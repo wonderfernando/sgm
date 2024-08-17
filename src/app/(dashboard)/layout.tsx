@@ -3,17 +3,17 @@ import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { ReactNode, useState } from "react";
 
-export default function LayoutDashboard({children} : {children:ReactNode}) {
+export default function LayoutDashboard({ children }: { children: ReactNode }) {
     const [isSideBarOpen, setIsSideBarOpen] = useState(true)
     function toogleSideBar() {
-        setIsSideBarOpen((state)=>!state)
+        setIsSideBarOpen((state) => !state)
     }
- 
+
     return (
-        <div className="bg-zinc-100 flex">
-            <Sidebar isSideBarOpen={isSideBarOpen}/>
+        <div className="bg-zinc-100 flex items-start">
+            <Sidebar isSideBarOpen={isSideBarOpen} />
             <main className="w-full">
-                <Header toogleSideBar={toogleSideBar}/>
+                <Header toogleSideBar={toogleSideBar} />
                 {children}
             </main>
         </div>

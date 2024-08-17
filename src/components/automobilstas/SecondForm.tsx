@@ -4,26 +4,22 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { AutomobilistaType } from "./AutomobilistaForm";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react";
-import { Calendar } from "../ui/calendar";
+import { Check, ChevronsUpDown } from "lucide-react";
 import { useEffect, useState } from "react";
-import {format} from 'date-fns';
-import parse  from "date-fns/parse";
-import ptBR from 'date-fns/locale/pt-BR';
 import { ICountry, IStep } from "./FirstForm";
 import { FormControl, FormField, FormItem } from "../ui/form";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command";
-import { cn } from "@/lib/utils";
+import { cn, MUNICIPIOS, PROVINCES } from "@/lib/utils";
+
 export default function SecondForm({setNextStep,setPreviusStep} : IStep) {
     async function getCountrys() {
         const response = await fetch("https://restcountries.com/v3.1/all?fields=name,flag")
         const json = await response.json() as ICountry[]
         setCountry(json.reverse())
     }
-    const {register, formState,watch,setValue} = useFormContext<AutomobilistaType>()
+    const {register} = useFormContext<AutomobilistaType>()
     const form = useFormContext<AutomobilistaType>()
-    const [data, setData] = useState("Data de nascimento")
+    
     const [openProvince,setOpenProvince] = useState(false)
     const [open,setOpen] = useState(false)
     const [openMunicipe,setOpenMunicipe] = useState(false)
@@ -54,18 +50,11 @@ export default function SecondForm({setNextStep,setPreviusStep} : IStep) {
                 <Label className="text-slate-700">Informe o email alternativo</Label>
                 <Input {...register("email_alternativo")} placeholder="Endereço de email alternativo"/>
             </div>
-            <div className="flex flex-col gap-2">
-                <Label className="text-slate-700">Informe o email alternativo</Label>
-                <Input {...register("email_alternativo")} placeholder="Endereço de email alternativo"/>
-            </div>
-            <div className="flex flex-col gap-2">
-                <Label className="text-slate-700">Informe o email alternativo</Label>
-                <Input {...register("email_alternativo")} placeholder="Endereço de email alternativo"/>
-            </div>
+  
             <div className="grid grid-cols-2 gap-2 max-sm:grid-cols-1">
                 <FormField
                     control={form.control}
-                    name="pais"
+                    name="provincia"
                     render={({field}) => (
                         <FormItem className="flex flex-col">
                             <Label>Informe a provincia</Label>
@@ -89,22 +78,22 @@ export default function SecondForm({setNextStep,setPreviusStep} : IStep) {
                                     <CommandList>
                                         <CommandEmpty>Provincia nao encontrada</CommandEmpty>
                                         <CommandGroup>
-                                        {countrys && countrys.map((country) => (
+                                        {PROVINCES && PROVINCES.map((province) => (
                                             <CommandItem
-                                            key={country.name.common}
-                                            value={country.name.common}
+                                            key={province.name}
+                                            value={province.name}
                                             onSelect={(currentValue) => {
-                                                form.setValue("pais",currentValue)
+                                                form.setValue("provincia",currentValue)
                                                 setOpenProvince(false)
                                             }}
                                             >
                                             <Check
                                                 className={cn(
                                                 "mr-2 h-4 w-4",
-                                                field.value === country.name.common ? "opacity-100" : "opacity-0"
+                                                field.value === province.name ? "opacity-100" : "opacity-0"
                                                 )}
                                             />
-                                            {country.name.common}
+                                            {province.name}
                                             </CommandItem>
                                         ))}
                                         </CommandGroup>
@@ -117,7 +106,7 @@ export default function SecondForm({setNextStep,setPreviusStep} : IStep) {
                 />
                   <FormField
                     control={form.control}
-                    name="pais"
+                    name="municipio"
                     render={({field}) => (
                         <FormItem className="flex flex-col">
                             <Label>Informe o municipio</Label>
@@ -139,24 +128,24 @@ export default function SecondForm({setNextStep,setPreviusStep} : IStep) {
                                     <Command>
                                     <CommandInput placeholder="Procurar municipio.." />
                                     <CommandList>
-                                        <CommandEmpty>Provincia nao encontrada</CommandEmpty>
+                                        <CommandEmpty>Municipio nao encontrado</CommandEmpty>
                                         <CommandGroup>
-                                        {countrys && countrys.map((country) => (
+                                        {MUNICIPIOS && MUNICIPIOS.map((municipio) => (
                                             <CommandItem
-                                            key={country.name.common}
-                                            value={country.name.common}
+                                            key={municipio.name}
+                                            value={municipio.name}
                                             onSelect={(currentValue) => {
-                                                form.setValue("pais",currentValue)
+                                                form.setValue("municipio",currentValue)
                                                 setOpenMunicipe(false)
                                             }}
                                             >
                                             <Check
                                                 className={cn(
                                                 "mr-2 h-4 w-4",
-                                                field.value === country.name.common ? "opacity-100" : "opacity-0"
+                                                field.value === municipio.name ? "opacity-100" : "opacity-0"
                                                 )}
                                             />
-                                            {country.name.common}
+                                            {municipio.name}
                                             </CommandItem>
                                         ))}
                                         </CommandGroup>
